@@ -1,0 +1,21 @@
+{% extends 'scraping/base.html' %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col"><h2 class="my-3 text-center">Сервис по сбору и рассылки вакансий</h2>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h4>Для просмотра доступных вакансий, заполните форму по одному из полей</h4>
+            <form method="GET" action="{% url 'list'%}">
+         <div class="mb-3">
+             {{form.as_p}}
+        </div>
+      <button type="submit" class="btn btn-primary">Найти</button>
+    </form>
+        </div>
+    </div>
+{% endblock%}
+

@@ -1,10 +1,43 @@
-from django.template.defaultfilters import slugify as django_slugify
+cyrillic_letters = {
+        u'а': u'a',
+        u'б': u'b',
+        u'в': u'v',
+        u'г': u'g',
+        u'д': u'd',
+        u'е': u'e',
+        u'ё': u'e',
+        u'ж': u'zh',
+        u'з': u'z',
+        u'и': u'i',
+        u'й': u'y',
+        u'к': u'k',
+        u'л': u'l',
+        u'м': u'm',
+        u'н': u'n',
+        u'о': u'o',
+        u'п': u'p',
+        u'р': u'r',
+        u'с': u's',
+        u'т': u't',
+        u'у': u'u',
+        u'ф': u'f',
+        u'х': u'h',
+        u'ц': u'ts',
+        u'ч': u'ch',
+        u'ш': u'sh',
+        u'щ': u'sch',
+        u'ъ': u'',
+        u'ы': u'y',
+        u'ь': u'',
+        u'э': u'e',
+        u'ю': u'yu',
+        u'я': u'ya'
+    }
 
-# Slugify (Cyrillic)
-alphabet = {'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh', 'з': 'z', 'и': 'i',
-            'й': 'j', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't',
-            'у': 'u', 'ф': 'f', 'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ы': 'i', 'э': 'e', 'ю': 'yu',
-            'я': 'ya'}
 
-def slugify(s):
-    return django_slugify(''.join(alphabet.get(w, w) for w in s.lower()))
+def from_cyrillic_to_eng(text: str):
+    text = text.replace(' ', '_').lower()
+    tmp = ''
+    for ch in text:
+        tmp += cyrillic_letters.get(ch, ch)
+    return tmp
